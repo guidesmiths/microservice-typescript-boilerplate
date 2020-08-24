@@ -1,11 +1,11 @@
 import { Server } from 'http';
 import { OK } from 'http-status-codes';
 import manifest from '@manifest';
-import { runServer } from './server';
+import { runServer } from '@adapters';
 import axios from 'axios';
 
 const ENVIRONMENT_COPY = { ...process.env };
-const { SERVER_HOST, SERVER_PORT, MANIFEST_URI } = process.env;
+const { SERVER_HOST, SERVER_PORT, MANIFEST_ROUTE } = process.env;
 const host = SERVER_HOST.concat(':', SERVER_PORT);
 
 describe('[ADAPTERS] - Express server', () => {
@@ -20,8 +20,8 @@ describe('[ADAPTERS] - Express server', () => {
         process.env = { ...ENVIRONMENT_COPY };
     });
 
-    describe(`[GET] ${MANIFEST_URI} endpoint`, () => {
-        const manifestUrl = host.concat(MANIFEST_URI);
+    describe(`[GET] ${MANIFEST_ROUTE} endpoint`, () => {
+        const manifestUrl = host.concat(MANIFEST_ROUTE);
         test('must return the current manifest content successfully', async (done) => {
             let obtainedError = null;
 
