@@ -19,13 +19,14 @@
         "build:dev": "webpack --config ./webpack/webpack.dev.js",
         "build:pro": "npm run manifest && webpack --config ./webpack/webpack.prod.js",
         "test": "npm run test:clearCache; jest --runInBand --watch",
+        "test:noWatch": "npm run test:clearCache; jest --runInBand",
         "test:clearCache": "jest --clearCache",
         "manifest": "node_modules/make-manifest/bin/make-manifest"
     },
     "husky": {
         "hooks": {
             "pre-commit": "pretty-quick --staged",
-            "pre-push": "npm run test"
+            "pre-push": "npm run test:noWatch"
         }
     },
     "devDependencies": {
@@ -48,11 +49,11 @@
         "eslint-plugin-import": "^2.22.0",
         "http-status-codes": "^1.4.0",
         "husky": "^4.2.5",
-        "jest": "^26.4.1",
+        "jest": "^26.4.2",
         "make-manifest": "^1.0.1",
         "nodemon-webpack-plugin": "^4.3.2",
         "prettier": "^2.0.5",
-        "pretty-quick": "^2.0.1",
+        "pretty-quick": "^2.0.2",
         "ts-jest": "^26.2.0",
         "ts-loader": "^8.0.2",
         "ts-node": "^8.10.2",
